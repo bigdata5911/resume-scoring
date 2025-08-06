@@ -1,234 +1,192 @@
-# Resume Scoring Dashboard
+# TailAdmin React - Free React Tailwind Admin Dashboard Template
 
-A modern React-based dashboard for monitoring and managing the Resume Scoring API backend system.
+TailAdmin is a free and open-source admin dashboard template built on **React and Tailwind CSS**, providing developers
+with everything they need to create a comprehensive, data-driven back-end,
+dashboard, or admin panel solution for upcoming web projects.
 
-## Features
+With TailAdmin, you get access to all the necessary dashboard UI components, elements, and pages required to build a
+feature-rich and complete dashboard or admin panel. Whether you're building dashboard or admin panel for a complex web
+application or a simple website, TailAdmin is the perfect solution to help you get up and running quickly.
 
-### 📊 **Dashboard Overview**
-- Real-time metrics and statistics
-- System health monitoring
-- Processing queue status
-- Email monitoring status
+![TailAdmin React.js Dashboard Preview](./banner.png)
 
-### 📝 **Resume Submissions**
-- View all resume submissions
-- Filter by status and search candidates
-- Track processing progress
-- View scoring results
+## Overview
 
-### 💼 **Job Descriptions**
-- Manage job postings and requirements
-- Add keywords for better matching
-- Track active vs inactive positions
-- View submission statistics per job
+TailAdmin provides essential UI components and layouts for building feature-rich, data-driven admin dashboards and
+control panels. It's built on:
 
-### 📈 **Scoring Results**
-- Detailed scoring analysis
-- Score breakdown by category (Technical, Experience, Education, Skills, Communication)
-- Filter by score ranges and recommendations
-- Export results for reporting
+- React 19
+- TypeScript
+- Tailwind CSS
 
-### 📧 **Email Monitoring**
-- Monitor email configurations
-- Track email response status
-- View email templates
-- Monitor SMTP connections
+### Quick Links
 
-### 🔍 **System Logs**
-- Comprehensive audit trail
-- User activity tracking
-- System event monitoring
-- Filter logs by action type and time
+- [✨ Visit Website](https://tailadmin.com)
+- [📄 Documentation](https://tailadmin.com/docs)
+- [⬇️ Download](https://tailadmin.com/download)
+- [🖌️ Figma Design File (Community Edition)](https://www.figma.com/community/file/1214477970819985778)
+- [⚡ Get PRO Version](https://tailadmin.com/pricing)
 
-## Tech Stack
+### Demos
 
-- **React 19** - Modern React with hooks
-- **TypeScript** - Type safety and better development experience
-- **Tailwind CSS** - Utility-first CSS framework
-- **Vite** - Fast build tool and development server
-- **React Router** - Client-side routing
-- **Iconify** - Icon library integration
+- [Free Version](https://free-react-demo.tailadmin.com/)
+- [Pro Version](https://react-demo.tailadmin.com)
 
-## Getting Started
+### Other Versions
+
+- [HTML Version](https://github.com/TailAdmin/tailadmin-free-tailwind-dashboard-template)
+- [Next.js Version](https://github.com/TailAdmin/free-nextjs-admin-dashboard)
+- [Vue.js Version](https://github.com/TailAdmin/vue-tailwind-admin-dashboard)
+
+## Installation
 
 ### Prerequisites
 
-- Node.js 18+ 
-- npm or yarn
-- Resume Scoring API backend running on `http://localhost:8000`
+To get started with TailAdmin, ensure you have the following prerequisites installed and set up:
 
-### Installation
+- Node.js 18.x or later (recommended to use Node.js 20.x or later)
 
-1. **Install dependencies:**
-   ```bash
-   cd web
-   npm install
-   ```
+### Cloning the Repository
 
-2. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
-
-3. **Open your browser:**
-   Navigate to `http://localhost:5173`
-
-### Building for Production
+Clone the repository using the following command:
 
 ```bash
-npm run build
+git clone https://github.com/TailAdmin/free-react-tailwind-admin-dashboard.git
 ```
 
-The built files will be in the `dist` directory.
+> Windows Users: place the repository near the root of your drive if you face issues while cloning.
 
-## API Integration
+1. Install dependencies:
 
-The dashboard connects to the Resume Scoring API backend with the following endpoints:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-### Dashboard Metrics
-- `GET /api/dashboard/metrics` - System overview metrics
-- `GET /api/dashboard/processing-stats` - Processing statistics
-- `GET /api/dashboard/scoring-stats` - Scoring analytics
+   > Use the `--legacy-peer-deps` flag, if you face issues while installing.
 
-### Resume Management
-- `GET /api/resume-submissions/` - List all submissions
-- `POST /api/resume-submissions/` - Create new submission
-- `GET /api/resume-submissions/{id}` - Get submission details
+2. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-### Job Descriptions
-- `GET /api/job-descriptions/` - List all job descriptions
-- `POST /api/job-descriptions/` - Create new job description
-- `PUT /api/job-descriptions/{id}` - Update job description
+## Components
 
-### Scoring Results
-- `GET /api/scoring-results/` - List all scoring results
-- `GET /api/scoring-results/{id}` - Get detailed scoring result
+TailAdmin is a pre-designed starting point for building a web-based dashboard using React.js and Tailwind CSS. The
+template includes:
 
-### Email Management
-- `GET /api/email-configs/` - List email configurations
-- `GET /api/email-responses/` - List email responses
-- `POST /api/email-configs/` - Create email configuration
+- Sophisticated and accessible sidebar
+- Data visualization components
+- Prebuilt profile management and 404 page
+- Tables and Charts(Line and Bar)
+- Authentication forms and input elements
+- Alerts, Dropdowns, Modals, Buttons and more
+- Can't forget Dark Mode 🕶️
 
-### System Monitoring
-- `GET /api/audit-logs/` - List system audit logs
-- `GET /health` - API health check
-- `GET /api/health/database` - Database health check
-- `GET /api/health/redis` - Redis health check
-- `GET /api/health/email` - Email service health check
+All components are built with React and styled using Tailwind CSS for easy customization.
 
-## Project Structure
+## Feature Comparison
 
-```
-web/
-├── src/
-│   ├── components/
-│   │   ├── resume/           # Resume scoring components
-│   │   │   ├── ResumeMetrics.tsx
-│   │   │   ├── RecentSubmissions.tsx
-│   │   │   ├── EmailMonitoringCard.tsx
-│   │   │   ├── SystemHealthCard.tsx
-│   │   │   ├── ResumeProcessingChart.tsx
-│   │   │   └── ScoringStatisticsChart.tsx
-│   │   ├── common/           # Shared components
-│   │   ├── ui/              # UI components
-│   │   └── ...
-│   ├── pages/
-│   │   ├── Dashboard/        # Main dashboard
-│   │   ├── ResumeScoring/    # Resume scoring pages
-│   │   │   ├── ResumeSubmissions.tsx
-│   │   │   ├── JobDescriptions.tsx
-│   │   │   ├── ScoringResults.tsx
-│   │   │   ├── EmailMonitoring.tsx
-│   │   │   └── SystemLogs.tsx
-│   │   └── ...
-│   ├── layout/              # Layout components
-│   ├── context/             # React context
-│   ├── hooks/               # Custom hooks
-│   └── icons/               # Icon components
-├── public/                  # Static assets
-└── package.json
-```
+### Free Version
 
-## Key Features
+- 1 Unique Dashboard
+- 30+ dashboard components
+- 50+ UI elements
+- Basic Figma design files
+- Community support
 
-### Real-time Updates
-- Auto-refresh metrics every 30 seconds
-- Live system health monitoring
-- Real-time processing queue updates
+### Pro Version
 
-### Advanced Filtering
-- Search across all data
-- Filter by status, date ranges, and categories
-- Multi-criteria filtering
+- 5 Unique Dashboards: Analytics, Ecommerce, Marketing, CRM, Stocks (more coming soon)
+- 400+ dashboard components and UI elements
+- Complete Figma design file
+- Email support
 
-### Responsive Design
-- Mobile-friendly interface
-- Dark/light theme support
-- Adaptive layouts
+To learn more about pro version features and pricing, visit our [pricing page](https://tailadmin.com/pricing).
 
-### Data Visualization
-- Interactive charts and graphs
-- Progress indicators
-- Status badges and icons
+## Changelog
 
-## Development
+### Version 2.0.2 - [March 25, 2025]
 
-### Adding New Components
+- Upgraded to React 19
+- Included overrides for packages to prevent peer dependency errors.
+- Migrated from react-flatpickr to flatpickr package for React 19 support
 
-1. Create component in appropriate directory
-2. Add TypeScript interfaces for data
-3. Implement API integration
-4. Add to routing if needed
+### Version 2.0.1 - [February 27, 2025]
 
-### Styling
+#### Update Overview
 
-The project uses Tailwind CSS with custom configuration. Follow the existing patterns for:
-- Color schemes (primary, success, warning, danger)
-- Spacing and layout
-- Dark mode support
+- Upgraded to Tailwind CSS v4 for better performance and efficiency.
+- Updated class usage to match the latest syntax and features.
+- Replaced deprecated class and optimized styles.
 
-### API Integration
+#### Next Steps
 
-All API calls use the `fetch` API with error handling:
-```typescript
-const fetchData = async () => {
-  try {
-    const response = await fetch("http://localhost:8000/api/endpoint");
-    if (response.ok) {
-      const data = await response.json();
-      // Handle data
-    }
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-};
-```
+- Run npm install or yarn install to update dependencies.
+- Check for any style changes or compatibility issues.
+- Refer to the Tailwind CSS v4 [Migration Guide](https://tailwindcss.com/docs/upgrade-guide) on this release. if needed.
+- This update keeps the project up to date with the latest Tailwind improvements. 🚀
 
-## Troubleshooting
+### Version 2.0.0 - [February 2025]
 
-### Common Issues
+A major update with comprehensive redesign and modern React patterns implementation.
 
-1. **API Connection Errors**
-   - Ensure the backend API is running on `http://localhost:8000`
-   - Check CORS configuration in the API
-   - Verify network connectivity
+#### Major Improvements
 
-2. **Build Errors**
-   - Clear node_modules and reinstall: `rm -rf node_modules && npm install`
-   - Check TypeScript errors: `npm run lint`
+- Complete UI redesign with modern React patterns
+- New features: collapsible sidebar, chat, and calendar
+- Improved performance and accessibility
+- Updated data visualization using ApexCharts
 
-3. **Development Server Issues**
-   - Clear Vite cache: `rm -rf node_modules/.vite`
-   - Restart development server
+#### Key Features
 
-## Contributing
+- Redesigned dashboards (Ecommerce, Analytics, Marketing, CRM)
+- Enhanced navigation with React Router integration
+- Advanced tables with sorting and filtering
+- Calendar with drag-and-drop support
+- New UI components and improved existing ones
 
-1. Follow the existing code structure
-2. Add TypeScript types for all data
-3. Include error handling for API calls
-4. Test responsive design
-5. Update documentation as needed
+#### Breaking Changes
+
+- Updated sidebar component API
+- Migrated charts to ApexCharts
+- Revised authentication system
+
+[Read more](https://tailadmin.com/docs/update-logs/react) on this release.
+
+### Version 1.3.7 - [June 20, 2024]
+
+#### Enhancements
+
+1. Remove Repetition of DefaultLayout in every Pages
+2. Add ClickOutside Component for reduce repeated functionality in Header Message, Notification and User Dropdowns.
+
+### Version 1.3.6 - [Jan 31, 2024]
+
+#### Enhancements
+
+1. Integrate flatpickr in [Date Picker/Form Elements]
+2. Change color after select an option [Select Element/Form Elements].
+3. Make it functional [Multiselect Dropdown/Form Elements].
+4. Make best value editable [Pricing Table One/Pricing Table].
+5. Rearrange Folder structure.
+
+### Version 1.2.0 - [Apr 28, 2023]
+
+- Add Typescript in TailAdmin React.
+
+### Version 1.0.0 - Initial Release - [Mar 13, 2023]
+
+- Initial release of TailAdmin React.
 
 ## License
 
-This project is part of the Resume Scoring System.
+TailAdmin React.js Free Version is released under the MIT License.
+
+## Support
+
+If you find this project helpful, please consider giving it a star on GitHub. Your support helps us continue developing
+and maintaining this template.

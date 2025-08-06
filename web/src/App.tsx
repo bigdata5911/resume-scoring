@@ -1,76 +1,102 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
 import SignIn from "./pages/AuthPages/SignIn";
 import SignUp from "./pages/AuthPages/SignUp";
 import NotFound from "./pages/OtherPage/NotFound";
 import UserProfiles from "./pages/UserProfiles";
-import Alerts from "./pages/UiElements/Alerts";
-import Badges from "./pages/UiElements/Badges";
-import Avatars from "./pages/UiElements/Avatars";
-import Buttons from "./pages/UiElements/Buttons";
-import LineChart from "./pages/Charts/LineChart";
-import BarChart from "./pages/Charts/BarChart";
-import Calendar from "./pages/Calendar";
-import BasicTables from "./pages/Tables/BasicTables";
-import FormElements from "./pages/Forms/FormElements";
-import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
+import LoadingSpinner from "./components/common/LoadingSpinner";
 import Home from "./pages/Dashboard/Home";
+import JobDescriptions from "./pages/JobManagement/JobDescriptions";
+import ResumeSubmissions from "./pages/JobManagement/ResumeSubmissions";
+import ScoringResults from "./pages/JobManagement/ScoringResults";
+import EmailConfigs from "./pages/EmailManagement/EmailConfigs";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 
-// Resume Scoring Pages
-import ResumeSubmissions from "./pages/ResumeScoring/ResumeSubmissions";
-import JobDescriptions from "./pages/ResumeScoring/JobDescriptions";
-import ScoringResults from "./pages/ResumeScoring/ScoringResults";
-import EmailMonitoring from "./pages/ResumeScoring/EmailMonitoring";
-import SystemLogs from "./pages/ResumeScoring/SystemLogs";
+// Protected Route Component
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user, isLoading } = useAuth();
+  
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <LoadingSpinner size="lg" />
+      </div>
+    );
+  }
+  
+  if (!user) {
+    return <Navigate to="/signin" replace />;
+  }
+  
+  return <>{children}</>;
+};
+
+// Public Route Component (redirects to dashboard if already logged in)
+const PublicRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user, isLoading } = useAuth();
+  
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <LoadingSpinner size="lg" />
+      </div>
+    );
+  }
+  
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
+  
+  return <>{children}</>;
+};
+
+function AppRoutes() {
+  return (
+    <Router>
+      <ScrollToTop />
+      <Routes>
+        {/* Protected Dashboard Routes */}
+        <Route element={
+          <ProtectedRoute>
+            <AppLayout />
+          </ProtectedRoute>
+        }>
+          <Route index path="/" element={<Home />} />
+          <Route path="/profile" element={<UserProfiles />} />
+          
+          {/* Job Management Routes */}
+          <Route path="/job-descriptions" element={<JobDescriptions />} />
+          <Route path="/resume-submissions" element={<ResumeSubmissions />} />
+          <Route path="/scoring-results" element={<ScoringResults />} />
+          
+          {/* Email Management Routes */}
+          <Route path="/email-configs" element={<EmailConfigs />} />
+        </Route>
+
+        {/* Public Auth Routes */}
+        <Route path="/signin" element={
+          <PublicRoute>
+            <SignIn />
+          </PublicRoute>
+        } />
+        <Route path="/signup" element={
+          <PublicRoute>
+            <SignUp />
+          </PublicRoute>
+        } />
+
+        {/* Fallback Route */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
+  );
+}
 
 export default function App() {
   return (
-    <>
-      <Router>
-        <ScrollToTop />
-        <Routes>
-          {/* Dashboard Layout */}
-          <Route element={<AppLayout />}>
-            <Route index path="/" element={<Home />} />
-
-            {/* Resume Scoring Pages */}
-            <Route path="/resume-submissions" element={<ResumeSubmissions />} />
-            <Route path="/job-descriptions" element={<JobDescriptions />} />
-            <Route path="/scoring-results" element={<ScoringResults />} />
-            <Route path="/email-monitoring" element={<EmailMonitoring />} />
-            <Route path="/system-logs" element={<SystemLogs />} />
-
-            {/* Others Page */}
-            <Route path="/profile" element={<UserProfiles />} />
-            <Route path="/calendar" element={<Calendar />} />
-            <Route path="/blank" element={<Blank />} />
-
-            {/* Forms */}
-            <Route path="/form-elements" element={<FormElements />} />
-
-            {/* Tables */}
-            <Route path="/basic-tables" element={<BasicTables />} />
-
-            {/* Ui Elements */}
-            <Route path="/alerts" element={<Alerts />} />
-            <Route path="/avatars" element={<Avatars />} />
-            <Route path="/badge" element={<Badges />} />
-            <Route path="/buttons" element={<Buttons />} />
-
-            {/* Charts */}
-            <Route path="/line-chart" element={<LineChart />} />
-            <Route path="/bar-chart" element={<BarChart />} />
-          </Route>
-
-          {/* Auth Layout */}
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-
-          {/* Fallback Route */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Router>
-    </>
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
   );
 }
