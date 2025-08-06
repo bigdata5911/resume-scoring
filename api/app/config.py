@@ -5,7 +5,10 @@ import os
 
 class Settings(BaseSettings):
     # Database
-    database_url: str = "postgresql://username:password@localhost:5432/resume_scoring_db"
+    database_url: str = "postgresql://postgres:postgres@localhost:5432/resume_scoring"
+    postgres_user: str = "postgres"
+    postgres_password: str = "postgres"
+    postgres_db: str = "resume_scoring"
     
     # Security
     secret_key: str = "your-secret-key-here"
@@ -31,8 +34,8 @@ class Settings(BaseSettings):
     
     # Application
     debug: bool = True
-    host: str = "0.0.0.0"
-    port: int = 8000
+    HOST: str = "0.0.0.0"
+    PORT: int = 8000
     
     class Config:
         env_file = ".env"
